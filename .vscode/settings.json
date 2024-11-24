@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "CHAININ.C": "cpp",
-        "HASHIN.C": "cpp"
+        "HASHIN.C": "cpp",
+        "format": "cpp",
+        "xstring": "cpp"
     }
 }
