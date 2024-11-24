@@ -18,7 +18,7 @@ int main()
     stuffed += s;
     for (char ch : data)
     {
-        if (ch == s || ch == e)
+        if (ch == s || ch == e || ch == escape)
         {
             stuffed += escape;
         }
