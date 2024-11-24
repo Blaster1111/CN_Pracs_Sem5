@@ -11,7 +11,6 @@ vector<int> bellmanFordAlgo(vector<vector<int>> &edges, int src)
     vector<int> dist(n, inf);
     dist[src] = 0;
     
-    // Main relaxation loop
     for (int i = 0; i < n - 1; i++) 
     {
         for (int j = 0; j < E; j++) 
@@ -25,7 +24,6 @@ vector<int> bellmanFordAlgo(vector<vector<int>> &edges, int src)
         }
     }
     
-    // Check for negative cycles
     for (int j = 0; j < E; j++) 
     {
         int u = edges[j][0];
