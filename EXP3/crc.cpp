@@ -37,8 +37,10 @@ string mod2div(string dividend, string divisor) {
     return tmp;
 }
 
-// Function to encode data
-string encodeData(string data, string key) {
+int main() {
+    string data = "1101011011";
+    string key = "10011";
+    
     int l_key = key.length();
     string appended_data = data;
     
@@ -49,15 +51,7 @@ string encodeData(string data, string key) {
     
     string remainder = mod2div(appended_data, key);
     string codeword = data + remainder;
-    return codeword;
-}
-
-int main() {
-    string data = "100100";
-    string key = "1101";
-    
-    string encoded = encodeData(data, key);
-    cout << "Encoded data: " << encoded << endl;
+    cout << "Encoded data: " << codeword << endl;
     
     return 0;
 }
