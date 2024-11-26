@@ -16,7 +16,7 @@ string mod2div(string dividend, string divisor) {
     int pick = divisor.length();
     string tmp = dividend.substr(0, pick);
     
-    for (int i = pick; i < dividend.length(); i++) {
+    for (int i = pick; i <= dividend.length(); i++) {
         if (tmp[0] == '1') {
             tmp = xor_func(divisor, tmp) + dividend[i];
         }
@@ -25,15 +25,7 @@ string mod2div(string dividend, string divisor) {
             tmp = xor_func(zeros, tmp) + dividend[i];
         }
     }
-    
-    if (tmp[0] == '1') {
-        tmp = xor_func(divisor, tmp);
-    }
-    else {
-        string zeros(pick, '0');
-        tmp = xor_func(zeros, tmp);
-    }
-    
+
     return tmp;
 }
 
