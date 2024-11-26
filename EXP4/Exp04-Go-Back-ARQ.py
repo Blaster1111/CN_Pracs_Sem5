@@ -1,46 +1,25 @@
-import random
 import time
+import random
 
-window_size = int(input("Number of frames that can be sent before needing an ACK: "))
-total_frames = int(input("Total number of frames to send: "))
-timeout = int(input("Timeout in seconds: "))
+# Main logic for Go-Back-N protocol
+window_size = 4
+total_frames = 10
+current_frame = 0  # Tracks the next frame to send
 
-successful_transmissions = set() 
+while current_frame < total_frames:
+    # Send frames within the window
+    for i in range(window_size):
+        if current_frame + i < total_frames:
+            print(f"Sending frame {current_frame + i}")
+        time.sleep(0.5)
 
-def send_frame(frame_number):
-    print(f"Sending frame {frame_number}")
-    success = random.choice([True, False]) 
-    if success:
-        successful_transmissions.add(frame_number)
-    return success
-
-def receive_ack(expected_frame):
-    time.sleep(1)  
-    if random.choice([True, False]):
-        if expected_frame in successful_transmissions:
-            return expected_frame  
-        return None  
-    return None 
-
-def go_back_n_arq():
-    base = 0  
-    next_frame_to_send = 0  
-
-    while base < total_frames:
-        while next_frame_to_send < base + window_size and next_frame_to_send < total_frames:
-            if send_frame(next_frame_to_send):
-                print(f"Frame {next_frame_to_send} sent successfully.")
+    # Simulate ACKs for frames in the window
+    for i in range(window_size):
+        if current_frame < total_frames:
+            ack = random.choice([True, False])  # Randomly simulate ACK success/failure
+            if ack:
+                print(f"ACK received for frame {current_frame}")
+                current_frame += 1
             else:
-                print(f"Frame {next_frame_to_send} lost.")
-            next_frame_to_send += 1
-
-        ack = receive_ack(base)
-        if ack is not None:
-            print(f"Received ACK for frame {ack}")
-            base = ack + 1  
-        else:
-            print("ACK lost or timeout occurred, resending from base frame")
-            next_frame_to_send = base  
-
-if __name__ == "__main__":
-    go_back_n_arq()
+                print(f"Frame {current_frame} lost, resending from this frame")
+                break  # Stop processing and resend from the current frame
