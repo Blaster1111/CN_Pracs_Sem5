@@ -7,6 +7,7 @@ def server():
     s.listen(1)
     con, _ = s.accept()
     tokens = 0  
+    
     size = 10 
 
     while True:
@@ -15,16 +16,14 @@ def server():
             break
 
         tokens = min(size, tokens + 2)
-        print(f"Tokens available: {tokens}")
-
+        print(f"\nTokens available: {tokens}")
+             
         if int(data) <= tokens:
             print(f"accept {data}")
             tokens -= int(data)
         else:
-            print(f"drop {data}")
-
-        time.sleep(1)
-
+            print(f"insufficient tokens")
+        
     con.close()
 
 server()

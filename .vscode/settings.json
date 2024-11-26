@@ -3,6 +3,7 @@
         "CHAININ.C": "cpp",
         "HASHIN.C": "cpp",
         "format": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "ostream": "cpp"
     }
 }
